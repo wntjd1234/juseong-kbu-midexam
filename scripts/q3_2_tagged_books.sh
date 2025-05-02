@@ -1,3 +1,3 @@
 #!/bin/bash
 
-jq '.[] | select(.tags != null and (.tags | contains(["philosophy", "cosmology"] | .[]))) | "\(.title) by \(.author)"' scripts/library.json
+jq -r '.library.categories[].books[] | select(.available == true and .copies >= 2) | "\(.title) by \(.author)"' scripts/library.json
